@@ -3,6 +3,7 @@ package com.example.joannahulek.newsapp;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
@@ -33,6 +34,7 @@ public class NewsCallbackLoader implements LoaderManager.LoaderCallbacks<List<Ne
     @Override
     public void onLoadFinished(Loader<List<News>> loader, List<News> data) {
         activity.findViewById(R.id.loading_indicator).setVisibility(View.GONE);
+        ((SwipeRefreshLayout) activity.findViewById(R.id.swiperefresh)).setRefreshing(false);
         adapter.clear();
         if (data != null && !data.isEmpty()) {
             activity.findViewById(R.id.empty_view).setVisibility(View.GONE);
